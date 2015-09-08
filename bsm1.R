@@ -23,15 +23,9 @@ is.on.interval = function(value, bounds) {
 }
 
 mf = function(population, size.of.sample, no.of.random.samples,
-              confidence.interval, no.of.repeats) {
-  no.of.random.samples = 1000
-  size.of.sample = 100
-  confidence.interval = 0.80
-  
+              confidence.interval, no.of.repeats, pop.mean) {
   # repeats contains pop.mean.not.on.interval% for each repeat
   repeats = vector('numeric')
-  no.of.repeats = 1000
-  
   j = 1
   while (j <= no.of.repeats) {
     pop.mean.not.on.interval.count = 0
@@ -53,29 +47,44 @@ mf = function(population, size.of.sample, no.of.random.samples,
   
 pop.size = 1000000
 
+
+
 pop.mean = 25
 pop.sd =5
 # population normal distribution
 P = rnorm(n=pop.size, mean=pop.mean, sd=pop.sd) 
 
+# print ('result_N_100_0.8')
+# result_P_100_0.8 = mf(P, 100, 1000, 0.8, 1000, pop.mean)  
+# print ('result_N_100_0.9')
+# result_P_100_0.9 = mf(P, 100, 1000, 0.8, 1000, pop.mean)
+# print ('result_N_100_0.99')
+# result_P_100_0.99 = mf(P, 100, 1000, 0.8, 1000, pop.mean)
+# print ('result_N_500_0.8')
+# result_P_500_0.8 = mf(P, 500, 1000, 0.8, 1000, pop.mean)  
+# print ('result_N_500_0.9')
+# result_P_500_0.9 = mf(P, 500, 1000, 0.8, 1000, pop.mean)
+# print ('result_N_500_0.99')
+# result_P_500_0.99 = mf(P, 500, 1000, 0.8, 1000, pop.mean)
+
 pop.min = -10
 pop.max = 10
 # population uniform distribution
 P.uniform = runif(pop.size, min=pop.min, max=pop.max)
+pop.mean = mean(P.uniform)
 
-result_P_100_0.8 = mf(P, 100, 1000, 0.8, 1000)  
-result_P_100_0.9 = mf(P, 100, 1000, 0.8, 1000)
-result_P_100_0.99 = mf(P, 100, 1000, 0.8, 1000)
-result_P_500_0.8 = mf(P, 500, 1000, 0.8, 1000)  
-result_P_500_0.9 = mf(P, 500, 1000, 0.8, 1000)
-result_P_500_0.99 = mf(P, 500, 1000, 0.8, 1000)
-
-result_U_100_0.8 = mf(P.uniform, 100, 1000, 0.8, 1000)  
-result_U_100_0.9 = mf(P.uniform, 100, 1000, 0.8, 1000)
-result_U_100_0.99 = mf(P.uniform, 100, 1000, 0.8, 1000)
-result_U_500_0.8 = mf(P.uniform, 500, 1000, 0.8, 1000)  
-result_U_500_0.9 = mf(P.uniform, 500, 1000, 0.8, 1000)
-result_U_500_0.99 = mf(P.uniform, 500, 1000, 0.8, 1000)
+print ('result_U_100_0.8')
+result_U_100_0.8 = mf(P.uniform, 100, 10, 0.8, 10, pop.mean)  
+# print ('result_U_100_0.9')
+# result_U_100_0.9 = mf(P.uniform, 100, 1000, 0.8, 1000, pop.mean)
+# print ('result_U_100_0.99')
+# result_U_100_0.99 = mf(P.uniform, 100, 1000, 0.8, 1000, pop.mean)
+# print ('result_U_500_0.8')
+# result_U_500_0.8 = mf(P.uniform, 500, 1000, 0.8, 1000, pop.mean)  
+# print ('result_U_500_0.9')
+# result_U_500_0.9 = mf(P.uniform, 500, 1000, 0.8, 1000, pop.mean)
+# print ('result_U_500_0.99')
+# result_U_500_0.99 = mf(P.uniform, 500, 1000, 0.8, 1000, pop.mean)
 
 
 
